@@ -8,6 +8,7 @@ USING_NS_CC;//ui features
 
 USING_NS_CC_EXT;//ui features
 //using namespace ui;
+using namespace cocos2d;
 
 class HelloWorld : public cocos2d::Layer, public cocos2d::ui::EditBoxDelegate
 {
@@ -46,6 +47,8 @@ public:
      * @param editBox The edit box object that generated the event.
      */
     virtual void editBoxReturn(ui::EditBox* editBox);
+    
+    void loginTouchEvent(Ref *sender, ui::Widget::TouchEventType type);
 };
 
 #endif // __HELLOWORLD_SCENE_H__

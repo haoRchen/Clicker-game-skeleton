@@ -15,6 +15,10 @@
 		294D0D641D0D56D500F7F5D4 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294D0D631D0D56D500F7F5D4 /* CoreText.framework */; };
 		3EACC98F19EE6D4300EB3C5E /* res in Resources */ = {isa = PBXBuildFile; fileRef = 3EACC98E19EE6D4300EB3C5E /* res */; };
 		3EACC99019EE6D4300EB3C5E /* res in Resources */ = {isa = PBXBuildFile; fileRef = 3EACC98E19EE6D4300EB3C5E /* res */; };
+		3F4E21041D4BF79C00C8D985 /* button_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F4E21021D4BF79C00C8D985 /* button_pressed.png */; };
+		3F4E21051D4BF79C00C8D985 /* button_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F4E21021D4BF79C00C8D985 /* button_pressed.png */; };
+		3F4E21061D4BF79C00C8D985 /* button_normal.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 3F4E21031D4BF79C00C8D985 /* button_normal.jpeg */; };
+		3F4E21071D4BF79C00C8D985 /* button_normal.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 3F4E21031D4BF79C00C8D985 /* button_normal.jpeg */; };
 		3F6655BD1D47D90100413026 /* greenBackground.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 3F6655BC1D47D90100413026 /* greenBackground.jpeg */; };
 		3F6655BE1D47D90100413026 /* greenBackground.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 3F6655BC1D47D90100413026 /* greenBackground.jpeg */; };
 		3FDF65211D480C0700AB55F9 /* white.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FDF65201D480C0700AB55F9 /* white.png */; };
@@ -123,6 +127,8 @@
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		294D0D631D0D56D500F7F5D4 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
 		3EACC98E19EE6D4300EB3C5E /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; path = res; sourceTree = "<group>"; };
+		3F4E21021D4BF79C00C8D985 /* button_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_pressed.png; sourceTree = "<group>"; };
+		3F4E21031D4BF79C00C8D985 /* button_normal.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = button_normal.jpeg; sourceTree = "<group>"; };
 		3F6655BC1D47D90100413026 /* greenBackground.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = greenBackground.jpeg; sourceTree = "<group>"; };
 		3FDF651B1D47E9D500AB55F9 /* player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = player.h; sourceTree = "<group>"; };
 		3FDF65201D480C0700AB55F9 /* white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white.png; sourceTree = "<group>"; };
@@ -306,6 +312,8 @@
 				521A8EA819F11F5000D177D7 /* fonts */,
 				3EACC98E19EE6D4300EB3C5E /* res */,
 				46880B7619C43A67006E1F66 /* CloseNormal.png */,
+				3F4E21021D4BF79C00C8D985 /* button_pressed.png */,
+				3F4E21031D4BF79C00C8D985 /* button_normal.jpeg */,
 				3FDF65201D480C0700AB55F9 /* white.png */,
 				3F6655BC1D47D90100413026 /* greenBackground.jpeg */,
 				46880B7719C43A67006E1F66 /* CloseSelected.png */,
@@ -481,7 +489,9 @@
 				3F6655BD1D47D90100413026 /* greenBackground.jpeg in Resources */,
 				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
+				3F4E21041D4BF79C00C8D985 /* button_pressed.png in Resources */,
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
+				3F4E21061D4BF79C00C8D985 /* button_normal.jpeg in Resources */,
 				5087E78317EB970100C73F5D /* Icon-152.png in Resources */,
 				46880B8119C43A67006E1F66 /* HelloWorld.png in Resources */,
 				46880B7D19C43A67006E1F66 /* CloseSelected.png in Resources */,
@@ -511,9 +521,11 @@
 			files = (
 				46880B8219C43A67006E1F66 /* HelloWorld.png in Resources */,
 				503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */,
+				3F4E21071D4BF79C00C8D985 /* button_normal.jpeg in Resources */,
 				3EACC99019EE6D4300EB3C5E /* res in Resources */,
 				521A8EAA19F11F5000D177D7 /* fonts in Resources */,
 				46880B7C19C43A67006E1F66 /* CloseNormal.png in Resources */,
+				3F4E21051D4BF79C00C8D985 /* button_pressed.png in Resources */,
 				3FDF65221D480C0700AB55F9 /* white.png in Resources */,
 				3F6655BE1D47D90100413026 /* greenBackground.jpeg in Resources */,
 				46880B7E19C43A67006E1F66 /* CloseSelected.png in Resources */,
