@@ -1,11 +1,14 @@
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
+#include "extensions/cocos-ext.h"//ui
 #include "ui/CocosGUI.h"//widgets
 #include <iostream>
 
 USING_NS_CC;
+USING_NS_CC_EXT;//ui features
 using namespace cocos2d;
 using namespace std;
+
 
 
 Scene* HelloWorld::createScene()
@@ -96,6 +99,8 @@ bool HelloWorld::init()
     
     this->addChild(textField);
      */
+    
+    //editBox implementation
     ui::EditBox *userNameInput = ui::EditBox::create( Size(200, 30), ui::Scale9Sprite::create("white.png"));
     //set textbox position with openGL percentage coordinate
     //userNameInput->setPositionPercent(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height /2 + origin.y));
@@ -111,6 +116,14 @@ bool HelloWorld::init()
     userNameInput->setReturnType(ui::EditBox::KeyboardReturnType::DONE);
     userNameInput->setDelegate(this);
     this->addChild(userNameInput);
+    
+    //creating button, 1st parameter is the normal state, and second is the pressed state
+    ui::Button *loginButton = ui::Button::create("button_normal.jpeg", "button_pressed.png");
+    loginButton->setPosition(Vec2(300, 200));
+    loginButton->setTitleText("Login");
+    this->addChild(loginButton);
+    loginButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::loginTouchEvent, this));
+    
     
     return true;
 }
@@ -131,6 +144,38 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
     //_eventDispatcher->dispatchEvent(&customEndEvent);
     
     
+}
+void HelloWorld::loginTouchEvent(Ref *sender, ui::Widget::TouchEventType type)
+{
+    switch(type)
+    {
+        //when the user first touch the button
+        case ui::Widget::TouchEventType::BEGAN:
+        {
+            log("touch began");
+            break;
+        }
+        case ui::Widget::TouchEventType::MOVED:
+        {
+            log("touch moved");
+            break;
+        }
+        //if user gets interrupted, eg a phone call
+        case ui::Widget::TouchEventType::ENDED:
+        {
+            log("touch ended");
+            break;
+        }
+        case ui::Widget::TouchEventType::CANCELED:
+        {
+            log("touch cancelled");
+            break;
+        }
+        default:
+        {
+            break;
+        }
+    }
 }
 
 void HelloWorld::editBoxEditingDidBegin(ui::EditBox* editBox)
