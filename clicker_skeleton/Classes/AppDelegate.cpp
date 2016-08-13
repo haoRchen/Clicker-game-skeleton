@@ -3,10 +3,10 @@
 
 USING_NS_CC;
 
-static cocos2d::Size designResolutionSize = cocos2d::Size(480, 320);
-static cocos2d::Size smallResolutionSize = cocos2d::Size(480, 320);
-static cocos2d::Size mediumResolutionSize = cocos2d::Size(1024, 768);
-static cocos2d::Size largeResolutionSize = cocos2d::Size(2048, 1536);
+//static cocos2d::Size designResolutionSize = cocos2d::Size(480, 320);
+//static cocos2d::Size smallResolutionSize = cocos2d::Size(480, 320);
+//static cocos2d::Size mediumResolutionSize = cocos2d::Size(1024, 768);
+//static cocos2d::Size largeResolutionSize = cocos2d::Size(2048, 1536);
 
 AppDelegate::AppDelegate()
 {
@@ -21,12 +21,13 @@ AppDelegate::~AppDelegate()
 void AppDelegate::initGLContextAttrs()
 {
     // set OpenGL context attributes: red,green,blue,alpha,depth,stencil
+    //rendering purposes 
     GLContextAttrs glContextAttrs = {8, 8, 8, 8, 24, 8};
-
+    
     GLView::setGLContextAttrs(glContextAttrs);
 }
 
-// if you want to use the package manager to install more packages,  
+// if you want to use the package manager to install more packages,
 // don't modify or remove this function
 static int register_all_packages()
 {
@@ -35,14 +36,11 @@ static int register_all_packages()
 
 bool AppDelegate::applicationDidFinishLaunching() {
     // initialize director
+    
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
     if(!glview) {
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-        glview = GLViewImpl::createWithRect("MyCppGame", cocos2d::Rect(0, 0, designResolutionSize.width, designResolutionSize.height));
-#else
         glview = GLViewImpl::create("MyCppGame");
-#endif
         director->setOpenGLView(glview);
     }
 
@@ -51,28 +49,47 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0f / 60);
-
-    // Set the design resolution
-    glview->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, ResolutionPolicy::NO_BORDER);
-    auto frameSize = glview->getFrameSize();
-    // if the frame's height is larger than the height of medium size.
-    if (frameSize.height > mediumResolutionSize.height)
-    {        
-        director->setContentScaleFactor(MIN(largeResolutionSize.height/designResolutionSize.height, largeResolutionSize.width/designResolutionSize.width));
+    
+    auto fileUtils = FileUtils::getInstance();
+    //storing device resolution
+    auto screenSize = glview->getFrameSize();
+    
+    CCLOG("%f, %f", screenSize.width, screenSize.height);
+    //resolution order
+    std::vector<std::string> resDirOrders;
+    //check which asset the device requires
+    //2048x1536 for ipad pro 9.7/air 2/mini4 and 2
+    if(screenSize.width == 2048 || screenSize.height == 2048)
+    {
+        CCLOG("screensize 2048 x 1536****");
+        resDirOrders.push_back("ipad pro 9.7:air2:mini4and2");
+        resDirOrders.push_back("iphone 6");
+        resDirOrders.push_back("iphone 5");
+        //design resolution for landscape, for portrait set to 1536, 2048
+        glview->setDesignResolutionSize(screenSize.width, screenSize.height, ResolutionPolicy::NO_BORDER);
+    
     }
-    // if the frame's height is larger than the height of small size.
-    else if (frameSize.height > smallResolutionSize.height)
-    {        
-        director->setContentScaleFactor(MIN(mediumResolutionSize.height/designResolutionSize.height, mediumResolutionSize.width/designResolutionSize.width));
+    //iphone 6 resolution
+    else if(screenSize.width == 1334 || screenSize.height == 1334)
+    {
+        CCLOG("screensize 1334 x 750***");
+        resDirOrders.push_back("iphone 6");
+        resDirOrders.push_back("iphone 5");
+        glview->setDesignResolutionSize(screenSize.width, screenSize.height, ResolutionPolicy::FIXED_WIDTH);
+        
     }
-    // if the frame's height is smaller than the height of medium size.
+    //iphone 5 resolution
     else
-    {        
-        director->setContentScaleFactor(MIN(smallResolutionSize.height/designResolutionSize.height, smallResolutionSize.width/designResolutionSize.width));
+    {
+        CCLOG("screensize 1136 x 640****");
+        resDirOrders.push_back("iphone 5");
+        glview->setDesignResolutionSize(screenSize.width, screenSize.height, ResolutionPolicy::NO_BORDER);
+        //1136 x 640
+        
     }
-
-    register_all_packages();
-
+    //search vector order of resolution
+    fileUtils->setSearchPaths(resDirOrders);
+    
     // create a scene. it's an autorelease object
     auto scene = HelloWorld::createScene();
 

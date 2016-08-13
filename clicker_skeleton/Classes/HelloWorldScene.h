@@ -48,7 +48,7 @@ public:
      */
     virtual void editBoxReturn(ui::EditBox* editBox);
     
-    void loginTouchEvent(Ref *sender, ui::Widget::TouchEventType type);
+    void touchEvent(Ref *sender, ui::Widget::TouchEventType type);
 };
 
 #endif // __HELLOWORLD_SCENE_H__
