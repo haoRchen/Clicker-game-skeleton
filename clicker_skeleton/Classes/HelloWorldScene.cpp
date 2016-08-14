@@ -35,6 +35,8 @@ bool HelloWorld::init()
     {
         return false;
     }
+    
+    
     //storing visible screensize
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -62,8 +64,8 @@ bool HelloWorld::init()
 
     //////////////////
     // create and initialize a label/title
-    
-    auto label = Label::createWithTTF("Sign In", "fonts/Marker Felt.ttf", 45);
+    float scaleFactor = Director::getInstance()->getContentScaleFactor();
+    auto label = Label::createWithTTF("Sign In", "fonts/Marker Felt.ttf", 45*scaleFactor);
     
     // position the label on the center of the screen
     label->setPosition(Vec2(origin.x + visibleSize.width/2,
@@ -151,6 +153,13 @@ bool HelloWorld::init()
     loginButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::touchEvent, this));
     
     //**************************************
+    //local datastorage
+    UserDefault *def = UserDefault::getInstance();
+    //searches key, give back default value type integer 300 if nothing is found.
+    CCLOG("%d@@@@@@", def->getIntegerForKey("Hello22012", 300));
+    //creates a key with the integer value
+    def->setIntegerForKey("Hello22012", 2000);
+    def->flush();
     
     return true;
 }
