@@ -2,7 +2,6 @@
 #include "SimpleAudioEngine.h"
 #include "extensions/cocos-ext.h"//ui
 #include "ui/CocosGUI.h"//widgets
-#include <iostream>
 
 USING_NS_CC;
 USING_NS_CC_EXT;//ui features

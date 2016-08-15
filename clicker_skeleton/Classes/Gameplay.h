@@ -28,6 +28,6 @@ class Gameplay : public cocos2d::Layer, public cocos2d::ui::EditBoxDelegate
         CREATE_FUNC(Gameplay);
     
         void touchEvent(Ref *sender, ui::Widget::TouchEventType type);
-}
+};
 
 #endif /* clickergame_h */
