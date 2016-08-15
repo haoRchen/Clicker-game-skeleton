@@ -10,7 +10,7 @@ USING_NS_CC_EXT;//ui features
 //using namespace ui;
 using namespace cocos2d;
 
-class HelloWorld : public cocos2d::Layer, public cocos2d::ui::EditBoxDelegate
+class HelloWorld : public Layer, public ui::EditBoxDelegate
 {
 public:
     static cocos2d::Scene* createScene();
@@ -48,6 +48,10 @@ public:
      */
     virtual void editBoxReturn(ui::EditBox* editBox);
     
+    //transition to game scene
+    void toGameScene();
+    
+    //tracking touch events
     void touchEvent(Ref *sender, ui::Widget::TouchEventType type);
 };
 

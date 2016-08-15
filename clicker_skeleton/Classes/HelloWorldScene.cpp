@@ -1,4 +1,5 @@
 #include "HelloWorldScene.h"
+#include "GameScene.h"
 #include "SimpleAudioEngine.h"
 #include "extensions/cocos-ext.h"//ui
 #include "ui/CocosGUI.h"//widgets
@@ -232,4 +233,11 @@ void HelloWorld::editBoxTextChanged(ui::EditBox* editBox, const std::string& tex
 void HelloWorld::editBoxReturn(ui::EditBox* editBox)
 {
     log("Returned");
+}
+
+void HelloWorld::toGameScene()
+{
+    //get the game scene and run it.
+    auto scene = GameScene::createGameScene();
+    Director::getInstance()->replaceScene(scene);
 }

@@ -1,13 +1,13 @@
 //
-//  clickergame.h
+//  GameScene.h
 //  MyCppGame
 //
 //  Created by Hao ran chen on 2016-08-14.
 //
 //
 
-#ifndef clickergame_h
-#define clickergame_h
+#ifndef GameScene_h
+#define GameScene_h
 #include "ui/CocosGUI.h"//widgets
 #include "extensions/cocos-ext.h"//ui features
 #include "cocos2d.h"
@@ -18,16 +18,18 @@ USING_NS_CC_EXT;//ui features
 //using namespace ui;
 using namespace cocos2d;
 
-class Gameplay : public cocos2d::Layer, public cocos2d::ui::EditBoxDelegate
+class GameScene : public Layer
 {
     public:
-        static cocos2d::Scene* createGameplayScene();
+        GameScene(void);
+        ~GameScene(void);
+        static cocos2d::Scene* createGameScene();
     
-        virtual bool init();
+        virtual bool init() override;//overriding helloworld init
         // implement the "static create()" method manually
-        CREATE_FUNC(Gameplay);
+        CREATE_FUNC(GameScene);
     
         void touchEvent(Ref *sender, ui::Widget::TouchEventType type);
 };
 
-#endif /* clickergame_h */
+#endif /* GameScene_h */
