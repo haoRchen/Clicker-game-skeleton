@@ -15,6 +15,8 @@
 		294D0D641D0D56D500F7F5D4 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294D0D631D0D56D500F7F5D4 /* CoreText.framework */; };
 		3EACC98F19EE6D4300EB3C5E /* res in Resources */ = {isa = PBXBuildFile; fileRef = 3EACC98E19EE6D4300EB3C5E /* res */; };
 		3EACC99019EE6D4300EB3C5E /* res in Resources */ = {isa = PBXBuildFile; fileRef = 3EACC98E19EE6D4300EB3C5E /* res */; };
+		3FD7FA271D61982100CCCAB7 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3FD7FA261D61982100CCCAB7 /* GameScene.cpp */; };
+		3FD7FA281D61982100CCCAB7 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3FD7FA261D61982100CCCAB7 /* GameScene.cpp */; };
 		3FE1B0E11D5C535800BE1B5A /* iphone 5 in Resources */ = {isa = PBXBuildFile; fileRef = 3FE1B0DF1D5C535800BE1B5A /* iphone 5 */; };
 		3FE1B0E21D5C535800BE1B5A /* iphone 6 in Resources */ = {isa = PBXBuildFile; fileRef = 3FE1B0E01D5C535800BE1B5A /* iphone 6 */; };
 		3FE1B0E61D5C7B6500BE1B5A /* ipad pro 9.7:air2:mini4and2 in Resources */ = {isa = PBXBuildFile; fileRef = 3FE1B0E51D5C7B6500BE1B5A /* ipad pro 9.7:air2:mini4and2 */; };
@@ -118,7 +120,9 @@
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		294D0D631D0D56D500F7F5D4 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
 		3EACC98E19EE6D4300EB3C5E /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; path = res; sourceTree = "<group>"; };
-		3FDF651B1D47E9D500AB55F9 /* player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = player.h; sourceTree = "<group>"; };
+		3FD7FA221D60657400CCCAB7 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/usr/lib/libsqlite3.0.tbd; sourceTree = DEVELOPER_DIR; };
+		3FD7FA251D6074FC00CCCAB7 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
+		3FD7FA261D61982100CCCAB7 /* GameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameScene.cpp; sourceTree = "<group>"; };
 		3FE1B0DF1D5C535800BE1B5A /* iphone 5 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "iphone 5"; sourceTree = "<group>"; };
 		3FE1B0E01D5C535800BE1B5A /* iphone 6 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "iphone 6"; sourceTree = "<group>"; };
 		3FE1B0E51D5C7B6500BE1B5A /* ipad pro 9.7:air2:mini4and2 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "ipad pro 9.7:air2:mini4and2"; sourceTree = "<group>"; };
@@ -270,6 +274,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3FD7FA221D60657400CCCAB7 /* libsqlite3.0.tbd */,
 				294D0D631D0D56D500F7F5D4 /* CoreText.framework */,
 				ED545A7D1B68A1FA00C3958E /* libiconv.dylib */,
 				ED545A7B1B68A1F400C3958E /* libiconv.dylib */,
@@ -315,7 +320,8 @@
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
 				46880B8619C43A87006E1F66 /* HelloWorldScene.cpp */,
 				46880B8719C43A87006E1F66 /* HelloWorldScene.h */,
-				3FDF651B1D47E9D500AB55F9 /* player.h */,
+				3FD7FA251D6074FC00CCCAB7 /* GameScene.h */,
+				3FD7FA261D61982100CCCAB7 /* GameScene.cpp */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -516,6 +522,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				3FD7FA271D61982100CCCAB7 /* GameScene.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
@@ -528,6 +535,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				3FD7FA281D61982100CCCAB7 /* GameScene.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 				46880B8B19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 			);
