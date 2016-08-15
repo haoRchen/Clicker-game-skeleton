@@ -35,10 +35,13 @@ bool HelloWorld::init()
     {
         return false;
     }
-    
+    //storing visible screensize
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
+    //logs visible and original size. Testing purpose
+    CCLOG("visibleSize is (%.2f, %.2f)", visibleSize.width, visibleSize.height);
+    CCLOG("origin is (%.2f, %.2f)", origin.x, origin.y);
+    
     /////////////////////////////
     // 2. add a menu item with "X" image, which is clicked to quit the program
     //    you may modify it.
@@ -57,13 +60,10 @@ bool HelloWorld::init()
     menu->setPosition(Vec2::ZERO);
     this->addChild(menu, 1);
 
-    /////////////////////////////
-    // 3. add your codes below...
-
-    // add a label shows "Hello World"
-    // create and initialize a label
+    //////////////////
+    // create and initialize a label/title
     
-    auto label = Label::createWithTTF("Sign In", "fonts/Marker Felt.ttf", 24);
+    auto label = Label::createWithTTF("Sign In", "fonts/Marker Felt.ttf", 45);
     
     // position the label on the center of the screen
     label->setPosition(Vec2(origin.x + visibleSize.width/2,
@@ -72,43 +72,34 @@ bool HelloWorld::init()
     // add the label as a child to this layer
     this->addChild(label, 1);
     
-    // add "HelloWorld" splash screen"
-    auto sprite = Sprite::create("greenBackground.jpeg");
-
+    // add background image
+    auto sprite = Sprite::create("greenbackground.png");
+    //auto oWidth = sprite->getContentSize().width;
+    //auto oHeight = sprite->getContentSize().height;
+    //scaling background according to resolution
+    //sprite->setscale(visibleSize.width/oWidth, visibleSize.height/oHeight);
+    //sprite->setContentSize(visibleSize);//stretches/shrinks the image to the size of visible screen
     // position the sprite on the center of the screen
-    sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
+    sprite->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
+    CCLOG("********%f, %f", sprite->getContentSize().width, sprite->getContentSize().height);
 
     // add the sprite as a child to this layer
     this->addChild(sprite, 0);
- 
     
-    /*
-    auto textField = ui::TextField::create("TEXTFIELD","Arial",30);
+    ////////////////////
+    //editBox implementation*****************
     
-    // set the maximum number of characters the user can enter for this TextField
-    textField->setMaxLength(10);
-    //change place holder's color
-    textField->setPlaceHolderColor(Color3B::BLUE);
-    //change text color
-    textField->setTextColor(Color4B::RED);
-    //set location of text field
-    textField->setPosition(Vec2(150, 150));
-    textField->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type){
-        std::cout << "editing a TextField" << std::endl;
-    });
-    
-    this->addChild(textField);
-     */
-    
-    //editBox implementation
-    ui::EditBox *userNameInput = ui::EditBox::create( Size(200, 30), ui::Scale9Sprite::create("white.png"));
-    //set textbox position with openGL percentage coordinate
-    //userNameInput->setPositionPercent(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height /2 + origin.y));
+    //username input
+    ui::EditBox *userNameInput = ui::EditBox::create( Size(visibleSize.width/3, visibleSize.height/30), ui::Scale9Sprite::create("white.png"));
     //set textbox position with openGL coordinates
-    userNameInput->setPosition(Vec2(250, 150));
-    userNameInput->setFontSize(25);
+    userNameInput->setPosition(Vec2((visibleSize.width/2), visibleSize.height/1.15 + origin.y));
+    //checking sprite position-testing purpose
+    CCLOG("X and Y is: (%.2f, %.2f)",((visibleSize.width * 1.35)), (visibleSize.height));
+    
+    userNameInput->setFontSize(20);
     userNameInput->setFontColor(Color3B::BLACK);
-    userNameInput->setPlaceHolder("Input Username Here");
+    userNameInput->setPlaceHolder("Username");
+    userNameInput->setPlaceholderFontSize(20);
     userNameInput->setPlaceholderFontColor(Color3B::GRAY);
     //limits the amount of characters the user may input
     userNameInput->setMaxLength(10);
@@ -117,13 +108,58 @@ bool HelloWorld::init()
     userNameInput->setDelegate(this);
     this->addChild(userNameInput);
     
-    //creating button, 1st parameter is the normal state, and second is the pressed state
-    ui::Button *loginButton = ui::Button::create("button_normal.jpeg", "button_pressed.png");
-    loginButton->setPosition(Vec2(300, 200));
-    loginButton->setTitleText("Login");
-    this->addChild(loginButton);
-    loginButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::loginTouchEvent, this));
+    //email address input
+    ui::EditBox *emailAddressInput = ui::EditBox::create( Size(visibleSize.width/3, visibleSize.height/30), ui::Scale9Sprite::create("white.png"));
+    //set textbox position with openGL coordinates
+    emailAddressInput->setPosition(Vec2((visibleSize.width/2), visibleSize.height/1.23 + origin.y));
+    emailAddressInput->setFontSize(20);
+    emailAddressInput->setFontColor(Color3B::BLACK);
+    emailAddressInput->setPlaceHolder("Email address");
+    emailAddressInput->setPlaceholderFontSize(20);
+    emailAddressInput->setPlaceholderFontColor(Color3B::GRAY);
+    emailAddressInput->setInputMode(ui::EditBox::InputMode::EMAIL_ADDRESS);
+    //type of return when finished typing
+    emailAddressInput->setReturnType(ui::EditBox::KeyboardReturnType::DONE);
+    emailAddressInput->setDelegate(this);
+    this->addChild(emailAddressInput);
     
+    //email password input
+    ui::EditBox *emailPasswordInput = ui::EditBox::create( Size(visibleSize.width/3, visibleSize.height/30), ui::Scale9Sprite::create("white.png"));
+    //set textbox position with openGL coordinates
+    emailPasswordInput->setPosition(Vec2((visibleSize.width/2), visibleSize.height/1.33 + origin.y));
+    emailPasswordInput->setFontSize(20);
+    emailPasswordInput->setFontColor(Color3B::BLACK);
+    emailPasswordInput->setPlaceHolder("Email Password");
+    emailPasswordInput->setPlaceholderFontSize(20);
+    emailPasswordInput->setPlaceholderFontColor(Color3B::GRAY);
+    emailPasswordInput->setInputFlag(ui::EditBox::InputFlag::PASSWORD);
+    emailPasswordInput->setInputMode(ui::EditBox::InputMode::SINGLE_LINE);
+    //type of return when finished typing
+    emailPasswordInput->setReturnType(ui::EditBox::KeyboardReturnType::DONE);
+    emailPasswordInput->setDelegate(this);
+    this->addChild(emailPasswordInput);
+    
+    //**********************************
+    
+    //creating button, 1st parameter is the normal state, and second is the pressed state
+    ui::Button *loginButton = ui::Button::create("button_normal.png", "button_pressed.png");
+    //270 x 215
+    loginButton->setPosition(Vec2((visibleSize.width/2), visibleSize.height/1.50 + origin.y));
+    loginButton->setTitleText("Login");
+    loginButton->setTitleFontSize(25);
+    this->addChild(loginButton);
+    loginButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::touchEvent, this));
+    
+    //**************************************
+	//Establishes connection with server 
+	cocos2d::network::HttpRequest *request = new cocos2d::network::HttpRequest();
+	request->setUrl("http://www.ericschvartzman.com/cocos2dx/clicker_skeleton/jsonarray.php");
+	request->setRequestType(cocos2d::network::HttpRequest::Type::GET);
+	request->setResponseCallback(CC_CALLBACK_2(HelloWorld::onHttpRequestCompleted, this));
+	cocos2d::network::HttpClient::getInstance()->send(request);
+	request->release();
+
+	//Create conditional statement - when user logs into account, establish connection with server
     
     return true;
 }
@@ -145,7 +181,8 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
     
     
 }
-void HelloWorld::loginTouchEvent(Ref *sender, ui::Widget::TouchEventType type)
+//logging the occurences of touch events
+void HelloWorld::touchEvent(Ref *sender, ui::Widget::TouchEventType type)
 {
     switch(type)
     {
@@ -196,4 +233,38 @@ void HelloWorld::editBoxTextChanged(ui::EditBox* editBox, const std::string& tex
 void HelloWorld::editBoxReturn(ui::EditBox* editBox)
 {
     log("Returned");
+}
+
+void HelloWorld::onHttpRequestCompleted(cocos2d::network::HttpClient *sender, cocos2d::network::HttpResponse *response)
+{
+	// The data will be placed in the buffer.
+	std::vector<char> * buffer = response->getResponseData();
+	char *concatenated = (char *)malloc(buffer->size() + 1);
+	std::string s2(buffer->begin(), buffer->end());
+	strcpy(concatenated, s2.c_str());
+
+	// JSON Parser
+	Json *json = Json_create(concatenated);
+	int test1 = Json_getInt(json, "a", -1);
+	const char *test2 = Json_getString(json, "b", "default");
+	float test3 = Json_getFloat(json, "c", -1.0f);
+
+	// View the console
+	log("HTTP Response : key a : %i", test1);
+	log("HTTP Response : key b : %s", test2);
+	log("HTTP Response : key c : %f", test3);
+
+	// Delete the JSON object
+	Json_dispose(json);
+
+
+	if (response->getResponseCode() == 200)
+	{
+		printf("Succeeded");
+		return;
+	}
+	else
+	{
+		printf("Failed");
+	}
 }
