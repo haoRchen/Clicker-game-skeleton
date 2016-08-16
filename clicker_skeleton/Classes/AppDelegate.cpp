@@ -62,28 +62,37 @@ bool AppDelegate::applicationDidFinishLaunching() {
     if(screenSize.width == 2048 || screenSize.height == 2048)
     {
         CCLOG("screensize 2048 x 1536****");
+        //setting scale factor for reference
+        director->setContentScaleFactor(2048.0f/screenSize.height);
+        CCLOG("%f$$$$$$$$$$$$$$$$$$", 2048.0f/screenSize.height);
+        //design resolution for landscape, for portrait set to 1536, 2048
+        glview->setDesignResolutionSize(screenSize.width, screenSize.height, ResolutionPolicy::NO_BORDER);
         resDirOrders.push_back("ipad pro 9.7:air2:mini4and2");
         resDirOrders.push_back("iphone 6");
         resDirOrders.push_back("iphone 5");
-        //design resolution for landscape, for portrait set to 1536, 2048
-        glview->setDesignResolutionSize(screenSize.width, screenSize.height, ResolutionPolicy::NO_BORDER);
+        
     
     }
     //iphone 6 resolution
     else if(screenSize.width == 1334 || screenSize.height == 1334)
     {
         CCLOG("screensize 1334 x 750***");
+        director->setContentScaleFactor(1334.0f/screenSize.height);
+        glview->setDesignResolutionSize(screenSize.width, screenSize.height, ResolutionPolicy::FIXED_WIDTH);
         resDirOrders.push_back("iphone 6");
         resDirOrders.push_back("iphone 5");
-        glview->setDesignResolutionSize(screenSize.width, screenSize.height, ResolutionPolicy::FIXED_WIDTH);
+        
         
     }
     //iphone 5 resolution
     else
     {
         CCLOG("screensize 1136 x 640****");
-        resDirOrders.push_back("iphone 5");
+        director->setContentScaleFactor(1136.0f/screenSize.height);
+        CCLOG("%f$$$$$$$$$$$$$$$$$$", 1136.0f/screenSize.height);
         glview->setDesignResolutionSize(screenSize.width, screenSize.height, ResolutionPolicy::NO_BORDER);
+        resDirOrders.push_back("iphone 5");
+    
         //1136 x 640
         
     }
