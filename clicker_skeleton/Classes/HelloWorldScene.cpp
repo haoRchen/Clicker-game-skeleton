@@ -161,6 +161,15 @@ bool HelloWorld::init()
     def->setIntegerForKey("Hello22012", 2000);
     def->flush();
     
+    //Establishes connection with server
+    cocos2d::network::HttpRequest *request = new cocos2d::network::HttpRequest();
+    request->setUrl("http://www.ericschvartzman.com/cocos2dx/clicker_skeleton/jsonarray.php");
+    request->setRequestType(cocos2d::network::HttpRequest::Type::GET);
+    request->setResponseCallback(CC_CALLBACK_2(HelloWorld::onHttpRequestCompleted, this));
+    cocos2d::network::HttpClient::getInstance()->send(request);
+    request->release();
+    
+    //Create conditional statement - when user logs into account, establish connection with server
     return true;
 }
 
@@ -234,10 +243,43 @@ void HelloWorld::editBoxReturn(ui::EditBox* editBox)
 {
     log("Returned");
 }
-
 void HelloWorld::toGameScene()
 {
     //get the game scene and run it.
     auto scene = GameScene::createGameScene();
     Director::getInstance()->replaceScene(scene);
 }
+void HelloWorld::onHttpRequestCompleted(cocos2d::network::HttpClient *sender, cocos2d::network::HttpResponse *response)
+{
+    // The data will be placed in the buffer.
+    std::vector<char> * buffer = response->getResponseData();
+    char *concatenated = (char *)malloc(buffer->size() + 1);
+    std::string s2(buffer->begin(), buffer->end());
+    strcpy(concatenated, s2.c_str());
+    
+    // JSON Parser
+    Json *json = Json_create(concatenated);
+    int test1 = Json_getInt(json, "a", -1);
+    const char *test2 = Json_getString(json, "b", "default");
+    float test3 = Json_getFloat(json, "c", -1.0f);
+    
+    // View the console
+    log("HTTP Response : key a : %i", test1);
+    log("HTTP Response : key b : %s", test2);
+    log("HTTP Response : key c : %f", test3);
+    
+    // Delete the JSON object
+    Json_dispose(json);
+    
+    
+    if (response->getResponseCode() == 200)
+    {
+        printf("Succeeded");
+        return;
+    }
+    else
+    {
+        printf("Failed");
+    }
+}
+
