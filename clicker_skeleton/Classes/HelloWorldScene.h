@@ -3,6 +3,7 @@
 #include "ui/CocosGUI.h"//widgets
 #include "extensions/cocos-ext.h"//ui features
 #include "cocos2d.h"
+#include "network/HttpClient.h"
 
 USING_NS_CC;//ui features
 
@@ -22,6 +23,7 @@ public:
     
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
+
     /**
      * This method is called when an edit box gains focus after keyboard is shown.
      * @param editBox The edit box object that generated the event.
@@ -49,6 +51,9 @@ public:
     virtual void editBoxReturn(ui::EditBox* editBox);
     
     void touchEvent(Ref *sender, ui::Widget::TouchEventType type);
+    // Method grabs data from JSON array and stores them in local variables
+    void onHttpRequestCompleted(cocos2d::network::HttpClient *sender, cocos2d::network::HttpResponse *response);
+
 };
 
 #endif // __HELLOWORLD_SCENE_H__
