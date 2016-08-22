@@ -56,8 +56,6 @@ public:
     //tracking touch events on login button
     void touchEvent(Ref *sender, ui::Widget::TouchEventType type);
     
-    //single touch events
-    bool onTouchBegan(Touch *touch, Event * event);
     
     //transition to game scene
     void toGameScene(Ref *sender);

@@ -19,7 +19,7 @@
 		3F73A3781D66D4AB0022024A /* iphone 5 in Resources */ = {isa = PBXBuildFile; fileRef = 3F73A3751D66D4AB0022024A /* iphone 5 */; };
 		3F73A3791D66D4AB0022024A /* iphone 6 in Resources */ = {isa = PBXBuildFile; fileRef = 3F73A3761D66D4AB0022024A /* iphone 6 */; };
 		3F73A37C1D66FA680022024A /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F73A37A1D66FA680022024A /* GameScene.cpp */; };
-		3F73A37F1D67027A0022024A /* MessageHUD.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F73A37D1D67027A0022024A /* MessageHUD.cpp */; };
+		3F73A38A1D69A3E30022024A /* HUD.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F73A3881D69A3E30022024A /* HUD.cpp */; };
 		46880B8119C43A67006E1F66 /* HelloWorld.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7A19C43A67006E1F66 /* HelloWorld.png */; };
 		46880B8219C43A67006E1F66 /* HelloWorld.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7A19C43A67006E1F66 /* HelloWorld.png */; };
 		46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46880B8419C43A87006E1F66 /* AppDelegate.cpp */; };
@@ -125,8 +125,9 @@
 		3F73A3761D66D4AB0022024A /* iphone 6 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "iphone 6"; sourceTree = "<group>"; };
 		3F73A37A1D66FA680022024A /* GameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameScene.cpp; sourceTree = "<group>"; };
 		3F73A37B1D66FA680022024A /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
-		3F73A37D1D67027A0022024A /* MessageHUD.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MessageHUD.cpp; sourceTree = "<group>"; };
-		3F73A37E1D67027A0022024A /* MessageHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageHUD.h; sourceTree = "<group>"; };
+		3F73A3821D69179D0022024A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
+		3F73A3881D69A3E30022024A /* HUD.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HUD.cpp; sourceTree = "<group>"; };
+		3F73A3891D69A3E30022024A /* HUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUD.h; sourceTree = "<group>"; };
 		46880B7A19C43A67006E1F66 /* HelloWorld.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HelloWorld.png; sourceTree = "<group>"; };
 		46880B8419C43A87006E1F66 /* AppDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AppDelegate.cpp; sourceTree = "<group>"; };
 		46880B8519C43A87006E1F66 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -275,6 +276,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3F73A3821D69179D0022024A /* SystemConfiguration.framework */,
 				294D0D631D0D56D500F7F5D4 /* CoreText.framework */,
 				ED545A7D1B68A1FA00C3958E /* libiconv.dylib */,
 				ED545A7B1B68A1F400C3958E /* libiconv.dylib */,
@@ -320,9 +322,9 @@
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
 				3F73A37A1D66FA680022024A /* GameScene.cpp */,
 				3F73A37B1D66FA680022024A /* GameScene.h */,
-				3F73A37D1D67027A0022024A /* MessageHUD.cpp */,
-				3F73A37E1D67027A0022024A /* MessageHUD.h */,
 				46880B8619C43A87006E1F66 /* HelloWorldScene.cpp */,
+				3F73A3881D69A3E30022024A /* HUD.cpp */,
+				3F73A3891D69A3E30022024A /* HUD.h */,
 				46880B8719C43A87006E1F66 /* HelloWorldScene.h */,
 			);
 			name = Classes;
@@ -524,11 +526,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				3F73A38A1D69A3E30022024A /* HUD.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				3F73A37C1D66FA680022024A /* GameScene.cpp in Sources */,
-				3F73A37F1D67027A0022024A /* MessageHUD.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -578,7 +580,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = ios/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = (
 					"$(_COCOS_LIB_IOS_BEGIN)",
@@ -609,7 +611,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = ios/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = (
 					"$(_COCOS_LIB_IOS_BEGIN)",

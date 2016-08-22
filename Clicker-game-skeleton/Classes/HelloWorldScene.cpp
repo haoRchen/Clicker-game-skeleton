@@ -153,15 +153,6 @@ bool HelloWorld::init()
     this->addChild(loginButton);
     loginButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::touchEvent, this));
     
-    //**************************************
-    //local datastorage
-    UserDefault *def = UserDefault::getInstance();
-    //searches key, give back default value type integer 300 if nothing is found.
-    CCLOG("%d@@@@@@", def->getIntegerForKey("Hello22012", 300));
-    //creates a key with the integer value
-    def->setIntegerForKey("Hello22012", 2000);
-    def->flush();
-    
     /*
     //Establishes connection with server
     cocos2d::network::HttpRequest *request = new cocos2d::network::HttpRequest();
@@ -173,12 +164,6 @@ bool HelloWorld::init()
     
     //Create conditional statement - when user logs into account, establish connection with server
      */
-    
-    //adding single touch event listener
-    auto listener = EventListenerTouchOneByOne::create();
-    listener->setSwallowTouches(true);
-    listener->onTouchBegan = CC_CALLBACK_2(HelloWorld::onTouchBegan, this);
-    _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     
     return true;
 }
@@ -263,12 +248,6 @@ void HelloWorld::editBoxReturn(ui::EditBox* editBox)
     log("Returned");
 }
 
-bool HelloWorld::onTouchBegan(Touch *touch, Event *event)
-{
-    CCLOG("ontouchbegan x = %f, y = %f", touch->getLocationInView().x, touch->getLocationInView().y);
-    
-    return true;
-}
 /*void HelloWorld::toGameScene()
 {
     //get the game scene and run it.
@@ -291,9 +270,9 @@ bool HelloWorld::onTouchBegan(Touch *touch, Event *event)
     float test3 = Json_getFloat(json, "c", -1.0f);
     
     // View the console
-    log("HTTP Response : key a : %i", test1);
-    log("HTTP Response : key b : %s", test2);
-    log("HTTP Response : key c : %f", test3);
+    CCLOG("HTTP Response : key a : %i", test1);
+    CCLOG("HTTP Response : key b : %s", test2);
+    CCLOG("HTTP Response : key c : %f", test3);
     
     // Delete the JSON object
     Json_dispose(json);
