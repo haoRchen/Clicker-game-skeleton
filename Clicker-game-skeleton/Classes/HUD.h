@@ -18,7 +18,8 @@ public:
     //void setCoins(int);
     //void setCoinsPClick(int);
     //void setCoinsPSec(int);
-    
+    //local database pointer
+    UserDefault *def;
     virtual bool init();
     CREATE_FUNC(HUD);
 

@@ -29,10 +29,13 @@ bool HUD::init()
     CCLOG("background X and Y is: (%.2f, %.2f)",((s.width/3 + 120)), (s.height/7));
     this->addChild(_coinPerSecondS);
     
+    //local database pointer
+    def = UserDefault::getInstance();
     //HUD Labels
     
     //coin label
-    Coins = Label::createWithTTF("0", "fonts/arial.ttf", 60);
+    Coins = Label::createWithTTF(StringUtils::toString(def->getIntegerForKey("Coins")), "fonts/arial.ttf", 60);
+    //grab interger value from database, then convert to string to fit the argument
     Coins->setScale(0.5f);
     Coins->setAnchorPoint(Point(0.0f, 0.5f));
     Coins->setPosition(Point(s.width/4 + _coinS->getContentSize().width, s.height - sprite->getContentSize().height/2));
@@ -41,7 +44,7 @@ bool HUD::init()
     addChild(Coins);
     
     //coin per click label
-    CoinsPerClick = Label::createWithTTF("1", "fonts/arial.ttf", 60);
+    CoinsPerClick = Label::createWithTTF(StringUtils::toString(def->getIntegerForKey("Coins per click")), "fonts/arial.ttf", 60);
     CoinsPerClick->setScale(0.5f);
     CoinsPerClick->setAnchorPoint(Point(0.0f, 0.5f));
     CoinsPerClick->setPosition(Point((s.width/4)*2 + CoinsPerClick->getContentSize().width, s.height - sprite->getContentSize().height/2));
@@ -49,7 +52,7 @@ bool HUD::init()
     addChild(CoinsPerClick);
     
     //coin per second label
-    CoinsPerSecond = Label::createWithTTF("0", "fonts/arial.ttf", 60);
+    CoinsPerSecond = Label::createWithTTF(StringUtils::toString(def->getIntegerForKey("Passive income")), "fonts/arial.ttf", 60);
     CoinsPerSecond->setScale(0.5f);
     CoinsPerSecond->setAnchorPoint(Point(0.0f, 0.5f));
     CoinsPerSecond->setPosition(Point((s.width/4)*3 + CoinsPerSecond->getContentSize().width, s.height - sprite->getContentSize().height/2));
@@ -61,16 +64,22 @@ bool HUD::init()
 }
 
 /*
-void HUD::setCoins(int NewCoin)
+ //pass in pointer to database and the new value to be set
+void HUD::updateCoins(UserDefault *def, int NewCoin)
 {
+    
     delete Coins;
-    Coins = Label::createWithTTF(StringUtils::format("%d",NewCoin), "fonts/arial.ttf", 30);
+    __String *tempScore = __String::createWithFormat( "%i", NewCoin);
+    //changing label string value for display
+    Coins->setString(tempScore->getCString( ));
+    //updating the local database
+    def->setIntegerForKey("Coins", NewCoin + def->getIntegerForKey("Coins"));
 }
-void HUD::setCoinsPClick(int NewClickValue);
-void HUD::setCoinsPSec(int NewPassiveIncome);
- */
+void HUD::updateCoinsPClick(int NewClickValue);
+void HUD::updateCoinsPSec(int NewPassiveIncome);
 
 
+*/
 
 
 
