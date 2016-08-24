@@ -55,22 +55,6 @@ bool GameScene::init()
     sprite->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
     this->addChild(sprite, 0);
     
-    //**************************************
-    //local datastorage
-    UserDefault *def = UserDefault::getInstance();
-    //def->setIntegerForKey("Hello22012", -99);
-    //delete the app from iphone/ipad simulator to reset userdefault database
-    //searches key, give back default value type integer 300 if nothing is found.
-    CCLOG("%d@@@@@@", def->getIntegerForKey("Hello22012", 300));
-    //creates a key with the integer value
-    def->setIntegerForKey("Coins", 0);
-    def->setIntegerForKey("Coins per click", 1);
-    def->setIntegerForKey("Passive income", 0);
-    CCLOG("%d@@@@@@", def->getIntegerForKey("Coins"));
-    CCLOG("%d@@@@@@", def->getIntegerForKey("Coins per click"));
-    CCLOG("%d@@@@@@", def->getIntegerForKey("Passive income"));
-    def->flush();
-    
     //HUD integration
     _hud = HUD::create();
     addChild(_hud, 1);
@@ -86,7 +70,32 @@ bool GameScene::init()
 }
 bool GameScene::onTouchBegan(Touch *touch, Event *event)
 {
-    CCLOG("ontouchbegan x = %f, y = %f", touch->getLocationInView().x, touch->getLocationInView().y);
+    int _x = touch->getLocationInView().x;
+    int _y = touch->getLocationInView().y;
+    Size s = Director::getInstance()->getVisibleSize();
+    Sprite* backgroundsprite = _hud->getBackgroundSprite();
+    Size backgroundSize = backgroundsprite->getContentSize();
+    
+    CCLOG("ontouchbegan x = %d, y = %d", _x, _y);
+    CCLOG("%f, %f", backgroundSize.width, backgroundSize.height);
+    //checks if the click is within the coordinates allowed
+    if(_x <= s.width && _y > backgroundSize.height && _y <  1000)
+    {
+        CCLOG("you are clicking in the right place! ");
+        _hud->updateCoins(_hud->get_coinGainPerClick());//value changes depending on coins per click, sho
+    }
     
     return true;
 }
+
+
+
+
+
+
+
+
+
+
+
+

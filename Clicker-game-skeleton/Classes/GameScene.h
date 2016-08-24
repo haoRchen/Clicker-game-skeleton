@@ -32,7 +32,7 @@ class GameScene : public Layer
         // implement the "static create()" method manually
         CREATE_FUNC(GameScene);
         //single touch events, logging coordinates
-        bool onTouchBegan(Touch *touch, Event * event);
+        bool onTouchBegan(Touch *touch, Event * event) override;
         void touchEvent(Ref *sender, ui::Widget::TouchEventType type);
 };
 
