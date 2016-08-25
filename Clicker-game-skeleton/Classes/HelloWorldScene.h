@@ -50,9 +50,6 @@ public:
      */
     virtual void editBoxReturn(ui::EditBox* editBox);
     
-    //transition to game scene
-    //void toGameScene();
-    
     //tracking touch events on login button
     void touchEvent(Ref *sender, ui::Widget::TouchEventType type);
     

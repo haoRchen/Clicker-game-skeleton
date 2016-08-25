@@ -31,10 +31,13 @@ public:
     void set_coinAmount(int);
     void set_coinPerClick(int);
     void set_coinGainPerSec(int);
+    //Returns a pointer to the HUD background sprite
     Sprite* getBackgroundSprite();
     
     virtual bool init();
     CREATE_FUNC(HUD);
+    //difference between frames
+    void update(float dt);
 
 };
 

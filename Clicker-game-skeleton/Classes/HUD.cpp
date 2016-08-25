@@ -1,4 +1,5 @@
 #include "HUD.h"
+
 USING_NS_CC;
 
 bool HUD::init()
@@ -74,6 +75,8 @@ bool HUD::init()
     //updateCoinsPSec(3);
     
     
+    //calls scheduler every 1 second
+    this->schedule(schedule_selector(HUD::update), 1.0);
     return true;
 
 }
@@ -143,6 +146,18 @@ void HUD::set_coinGainPerSec(int newPassiveIncome)
 Sprite* HUD::getBackgroundSprite()
 {
     return sprite;
+}
+
+//scheduler calls this function to update using delta time
+void HUD::update(float dt)
+{
+    CCLOG("UPDATED coins ");
+    //check if user will gain coin passively
+    if(get_coinGainPerSec() > 0)
+    {
+        updateCoins(_coinGainPerSec);
+    }
+    
 }
 
 

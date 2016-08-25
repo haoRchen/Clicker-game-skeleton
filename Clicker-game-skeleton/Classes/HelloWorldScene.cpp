@@ -248,12 +248,6 @@ void HelloWorld::editBoxReturn(ui::EditBox* editBox)
     log("Returned");
 }
 
-/*void HelloWorld::toGameScene()
-{
-    //get the game scene and run it.
-    auto scene = GameScene::createGameScene();
-    Director::getInstance()->replaceScene(scene);
-} */
 /*
  void HelloWorld::onHttpRequestCompleted(cocos2d::network::HttpClient *sender, cocos2d::network::HttpResponse *response)
 {

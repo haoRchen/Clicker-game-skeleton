@@ -82,7 +82,7 @@ bool GameScene::onTouchBegan(Touch *touch, Event *event)
     if(_x <= s.width && _y > backgroundSize.height && _y <  1000)
     {
         CCLOG("you are clicking in the right place! ");
-        _hud->updateCoins(_hud->get_coinGainPerClick());//value changes depending on coins per click, sho
+        _hud->updateCoins(_hud->get_coinGainPerClick());//value changes depending on coins per click
     }
     
     return true;
