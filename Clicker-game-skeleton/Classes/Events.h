@@ -18,14 +18,18 @@ class Events : public Layer
 private:
     //needed: randomize event, create randomizer to pick an event and activate via a switch
     //label to display message
+    Label *eventMessage;
     //a number to reference event
-    //sprite for popup
-    //button to ackowledge event occurence
+    //popup background sprite
+    Sprite *popupBackground;
     //database pointer
 public:
     //getters and setters for private variables
     //switch function to push the proper message to the label
-    
+    // a selector callback to exit the popup
+    void menuCloseCallback(cocos2d::Ref* pSender);
+    virtual bool init();
+    CREATE_FUNC(Events);
 };
 
 
