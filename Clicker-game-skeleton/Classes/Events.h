@@ -27,7 +27,7 @@ public:
     //getters and setters for private variables
     //switch function to push the proper message to the label
     // a selector callback to exit the popup
-    void menuCloseCallback(cocos2d::Ref* pSender);
+    void eventCloseCallback(cocos2d::Ref* pSender);
     virtual bool init();
     CREATE_FUNC(Events);
 };

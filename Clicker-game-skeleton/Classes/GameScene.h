@@ -12,17 +12,22 @@
 #include "extensions/cocos-ext.h"//ui features
 #include "cocos2d.h"
 #include "HUD.h"
+#include <String.h>
 
 USING_NS_CC;//ui features
 
 USING_NS_CC_EXT;//ui features
 using namespace ui;
 using namespace cocos2d;
+using namespace std;
 
 class GameScene : public Layer
 {
     private:
         HUD* _hud;
+        int eventNumber;
+        string eventType;
+        string eventMsg;
     public:
         GameScene(void){;}
         ~GameScene(void){;}
@@ -34,6 +39,8 @@ class GameScene : public Layer
         //single touch events, logging coordinates
         bool onTouchBegan(Touch *touch, Event * event) override;
         void touchEvent(Ref *sender, ui::Widget::TouchEventType type);
+        string *eventName();
+        string *eventMessage();
 };
 
 #endif /* GameScene_h */

@@ -65,6 +65,10 @@ bool GameScene::init()
     listener->onTouchBegan = CC_CALLBACK_2(GameScene::onTouchBegan, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     
+    
+    //displays a message box with an "ok" confirmation button
+    MessageBox(eventMessage(), eventName());
+    //fix error
 
     return true;
 }
@@ -87,6 +91,44 @@ bool GameScene::onTouchBegan(Touch *touch, Event *event)
     
     return true;
 }
+
+string *GameScene::eventName()
+{
+    eventNumber = RandomHelper::random_int(1, 3);
+    switch (eventNumber) {
+        case 1:
+            eventType = "You have found some coins!";
+            break;
+        case 2:
+            eventType = "You have lost some coins";
+            break;
+        case 3:
+            eventType = "You've gained a passive income method!";
+        default:
+            CCLOG("invalid");
+            break;
+    }
+    return &eventType;
+}
+string *GameScene::eventMessage(string eventTpe)
+{
+    switch (eventNumber) {
+        case 1:
+            eventMsg = "+50 coins!";
+            break;
+        case 2:
+            eventMsg = "-50 coins!";
+            break;
+        case 3:
+            eventMsg = "+3 coins per second";
+            break;
+        default:
+            CCLOG("invalid msg");
+            break;
+    }
+    return &eventMsg;
+}
+
 
 
 
