@@ -23,21 +23,66 @@ bool Events::init()
     
     popupBackground = Sprite::create("eventPopup.png");
     popupBackground->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
-    this->addChild(popupBackground);
+    this->addChild(popupBackground, 0);
     
     //event message label
-    eventMessage = Label::createWithTTF("message", "fonts/arial.ttf", 60);
+    eventMessage = Label::createWithTTF(eventName()->c_str(), "fonts/arial.ttf", 60);
     eventMessage->setScale(0.5f);
     eventMessage->setAnchorPoint(Point(0.0f, 0.5f));
     eventMessage->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
-    addChild(eventMessage);
+    addChild(eventMessage, 1);
+    
+    //event message label
+    eventMessage2 = Label::createWithTTF(eventMessageGenerator()->c_str(), "fonts/arial.ttf", 60);
+    eventMessage2->setScale(0.5f);
+    eventMessage2->setAnchorPoint(Point(0.0f, 0.5f));
+    eventMessage2->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2 + 50));
+    addChild(eventMessage2, 1);
     
     //creating button, 1st parameter is the normal state, and second is the pressed state
     Button *eventButton = Button::create("button_normal.png", "button_pressed.png");
     eventButton->setPosition(Vec2((visibleSize.width/2), visibleSize.height/1.50 + origin.y));
     eventButton->setTitleText("Ok");
     eventButton->setTitleFontSize(25);
-    this->addChild(eventButton);
+    this->addChild(eventButton, 1);
     
     return true;
 }
+
+string *Events::eventName()
+{
+    eventNumber = RandomHelper::random_int(1, 3);
+    switch (eventNumber) {
+        case 1:
+            eventType = "You have found some coins!";
+            break;
+        case 2:
+            eventType = "You have lost some coins";
+            break;
+        case 3:
+            eventType = "You've gained a passive income method!";
+        default:
+            CCLOG("invalid");
+            break;
+    }
+    return &eventType;
+}
+string *Events::eventMessageGenerator()
+{
+    switch (eventNumber) {
+        case 1:
+            eventMsg = "+50 coins!";
+            break;
+        case 2:
+            eventMsg = "-50 coins!";
+            break;
+        case 3:
+            eventMsg = "+3 coins per second";
+            break;
+        default:
+            CCLOG("invalid msg");
+            break;
+    }
+    return &eventMsg;
+}
+

@@ -10,15 +10,22 @@
 #define Events_h__
 
 #include <stdio.h>
+#include <string.h>
 #include "cocos2d.h"
 
 USING_NS_CC;
+using namespace std;
+
 class Events : public Layer
 {
 private:
-    //needed: randomize event, create randomizer to pick an event and activate via a switch
-    //label to display message
+    int eventNumber;
+    string eventType;
+    string eventMsg;
+    //label to display title
     Label *eventMessage;
+    Label *eventMessage2;
+    
     //a number to reference event
     //popup background sprite
     Sprite *popupBackground;
@@ -27,7 +34,9 @@ public:
     //getters and setters for private variables
     //switch function to push the proper message to the label
     // a selector callback to exit the popup
-    void eventCloseCallback(cocos2d::Ref* pSender);
+    //void eventCloseCallback(cocos2d::Ref* pSender);
+    string* eventMessageGenerator();
+    string* eventName();
     virtual bool init();
     CREATE_FUNC(Events);
 };
