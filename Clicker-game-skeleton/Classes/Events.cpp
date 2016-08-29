@@ -34,17 +34,17 @@ bool Events::init()
     
     //event message label
     eventMessage2 = Label::createWithTTF(eventMessageGenerator()->c_str(), "fonts/arial.ttf", 60);
+    CCLOG("%s", eventMessageGenerator()->c_str());
     eventMessage2->setScale(0.5f);
     eventMessage2->setAnchorPoint(Point(0.0f, 0.5f));
     eventMessage2->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2 + 50));
     addChild(eventMessage2, 1);
     
     //creating button, 1st parameter is the normal state, and second is the pressed state
-    Button *eventButton = Button::create("button_normal.png", "button_pressed.png");
+    ui::Button *eventButton = ui::Button::create("button_normal.png", "button_pressed.png");
     eventButton->setPosition(Vec2((visibleSize.width/2), visibleSize.height/1.50 + origin.y));
-    eventButton->setTitleText("Ok");
-    eventButton->setTitleFontSize(25);
     this->addChild(eventButton, 1);
+    eventButton->addTouchEventListener(CC_CALLBACK_2(Events::eventCloseCallback, this));
     
     return true;
 }
@@ -84,5 +84,26 @@ string *Events::eventMessageGenerator()
             break;
     }
     return &eventMsg;
+}
+
+void Events::eventCloseCallback(cocos2d::Ref* pSender, ui::Widget::TouchEventType type)
+{
+    
+    switch(type)
+    {
+            //when the user first touch the button
+        case ui::Widget::TouchEventType::BEGAN:
+        {
+            log("touch began");
+            CCLOG("exiting events");
+            this->removeFromParentAndCleanup(true);
+            break;
+        }
+        default:
+        {
+            break;
+        }
+    }
+    //this->removeFromParentAndCleanup(true);
 }
 

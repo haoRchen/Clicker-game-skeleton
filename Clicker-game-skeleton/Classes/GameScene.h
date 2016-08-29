@@ -35,6 +35,7 @@ class GameScene : public Layer
         //single touch events, logging coordinates
         bool onTouchBegan(Touch *touch, Event * event) override;
         void touchEvent(Ref *sender, ui::Widget::TouchEventType type);
+        void update(float dt) override;//calls the events 
 
 };
 

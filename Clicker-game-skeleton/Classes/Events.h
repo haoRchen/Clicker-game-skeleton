@@ -12,8 +12,12 @@
 #include <stdio.h>
 #include <string.h>
 #include "cocos2d.h"
+#include "ui/CocosGUI.h"//widgets
+#include "extensions/cocos-ext.h"//ui features
+USING_NS_CC;//ui features
 
-USING_NS_CC;
+USING_NS_CC_EXT;//ui features
+using namespace ui;
 using namespace std;
 
 class Events : public Layer
@@ -37,6 +41,8 @@ public:
     //void eventCloseCallback(cocos2d::Ref* pSender);
     string* eventMessageGenerator();
     string* eventName();
+    void eventCloseCallback(cocos2d::Ref* pSender, ui::Widget::TouchEventType type);
+    
     virtual bool init();
     CREATE_FUNC(Events);
 };

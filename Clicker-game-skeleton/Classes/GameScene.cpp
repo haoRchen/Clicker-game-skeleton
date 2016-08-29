@@ -10,6 +10,7 @@
 #include "extensions/cocos-ext.h"//ui
 #include "ui/CocosGUI.h"//widgets
 #include "HUD.h"
+#include "Events.h"
 #include <iostream>
 
 USING_NS_CC;
@@ -65,7 +66,7 @@ bool GameScene::init()
     listener->onTouchBegan = CC_CALLBACK_2(GameScene::onTouchBegan, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     
-    
+    this->schedule(schedule_selector(GameScene::update), 5.0);
     
     return true;
 }
@@ -89,7 +90,17 @@ bool GameScene::onTouchBegan(Touch *touch, Event *event)
     return true;
 }
 
-
+//scheduler calls this function to update using delta time
+void GameScene::update(float dt)
+{
+    CCLOG("event called ");
+    
+    _eventDispatcher->pauseEventListenersForTarget(this, true);
+    
+    auto dl = Events::create();
+    addChild(dl);
+    
+}
 
 
 
