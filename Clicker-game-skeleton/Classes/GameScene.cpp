@@ -99,7 +99,24 @@ void GameScene::update(float dt)
     
     auto dl = Events::create();
     addChild(dl);
-    
+    auto eventNum = dl->getEventNum();
+    switch (eventNum) {
+        case 1:
+            _hud->updateCoins(50);
+            CCLOG("Added 50 coin");
+            break;
+        case 2:
+            _hud->updateCoins(-50);
+            CCLOG("Subtracted 50 coin");
+            break;
+        case 3:
+            _hud->updateCoinsPSec(3);
+            CCLOG("+3 more coins per second");
+            break;
+        default:
+            CCLOG("Invalid event num");
+            break;
+    }
 }
 
 

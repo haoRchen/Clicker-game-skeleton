@@ -30,15 +30,11 @@ private:
     Label *eventMessage;
     Label *eventMessage2;
     
-    //a number to reference event
     //popup background sprite
     Sprite *popupBackground;
-    //database pointer
+    
 public:
-    //getters and setters for private variables
-    //switch function to push the proper message to the label
-    // a selector callback to exit the popup
-    //void eventCloseCallback(cocos2d::Ref* pSender);
+    int getEventNum();
     string* eventMessageGenerator();
     string* eventName();
     void eventCloseCallback(cocos2d::Ref* pSender, ui::Widget::TouchEventType type);
