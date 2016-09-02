@@ -6,24 +6,24 @@ bool HUD::init()
 {
     Size s = Director::getInstance()->getVisibleSize();
     //HUD background
-    sprite = Sprite::create("greybackground1.jpeg");
-    sprite->setPosition(Vec2(s.width/2, s.height - sprite->getContentSize().height/2));
-    this->addChild(sprite, 0);
+    hudBackground = Sprite::create("greybackground1.jpeg");
+    hudBackground->setPosition(Vec2(s.width/2, s.height - hudBackground->getContentSize().height/2));
+    this->addChild(hudBackground, 0);
     
     //HUD sprites
     //coin sprite
     _coinS = Sprite::create("coin1.jpg");
-    _coinS->setPosition(Vec2(s.width/4, s.height - sprite->getContentSize().height/2));
+    _coinS->setPosition(Vec2(s.width/4, s.height - hudBackground->getContentSize().height/2));
     this->addChild(_coinS);
     
     //coins per click sprite
     _coinPerClickS = Sprite::create("mouse-click1.png");
-    _coinPerClickS->setPosition(Vec2(s.width/4 + s.width/4, s.height - sprite->getContentSize().height/2));
+    _coinPerClickS->setPosition(Vec2(s.width/4 + s.width/4, s.height - hudBackground->getContentSize().height/2));
     this->addChild(_coinPerClickS);
     
     //passive income per second sprite
     _coinPerSecondS = Sprite::create("hourglass1.png");
-    _coinPerSecondS->setPosition(Vec2(s.width/4 + (s.width/4)*2, s.height - sprite->getContentSize().height/2));
+    _coinPerSecondS->setPosition(Vec2(s.width/4 + (s.width/4)*2, s.height - hudBackground->getContentSize().height/2));
     this->addChild(_coinPerSecondS);
     
     //local database pointer
@@ -52,7 +52,7 @@ bool HUD::init()
     //grab interger value from database, then convert to string to fit the argument
     Coins->setScale(0.5f);
     Coins->setAnchorPoint(Point(0.0f, 0.5f));
-    Coins->setPosition(Point(s.width/4 + _coinS->getContentSize().width, s.height - sprite->getContentSize().height/2));
+    Coins->setPosition(Point(s.width/4 + _coinS->getContentSize().width, s.height - hudBackground->getContentSize().height/2));
 
     addChild(Coins);
     
@@ -60,22 +60,23 @@ bool HUD::init()
     CoinsPerClick = Label::createWithTTF(StringUtils::toString(_coinGainPerClick), "fonts/arial.ttf", 60);
     CoinsPerClick->setScale(0.5f);
     CoinsPerClick->setAnchorPoint(Point(0.0f, 0.5f));
-    CoinsPerClick->setPosition(Point((s.width/4)*2 + CoinsPerClick->getContentSize().width, s.height - sprite->getContentSize().height/2));
+    CoinsPerClick->setPosition(Point((s.width/4)*2 + CoinsPerClick->getContentSize().width, s.height - hudBackground->getContentSize().height/2));
     addChild(CoinsPerClick);
     
     //coin per second label
     CoinsPerSecond = Label::createWithTTF(StringUtils::toString(_coinGainPerSec), "fonts/arial.ttf", 60);
     CoinsPerSecond->setScale(0.5f);
     CoinsPerSecond->setAnchorPoint(Point(0.0f, 0.5f));
-    CoinsPerSecond->setPosition(Point((s.width/4)*3 + CoinsPerSecond->getContentSize().width, s.height - sprite->getContentSize().height/2));
+    CoinsPerSecond->setPosition(Point((s.width/4)*3 + CoinsPerSecond->getContentSize().width, s.height - hudBackground->getContentSize().height/2));
     addChild(CoinsPerSecond);
     
+    //manually resetting the database
     //updateCoins(4);
     //updateCoinsPClick(-5);
     //updateCoinsPSec(3);
     
     
-    //calls scheduler every 1 second
+    //calls scheduler every 1 second for passive income
     this->schedule(schedule_selector(HUD::update), 1.0);
     return true;
 
@@ -145,7 +146,7 @@ void HUD::set_coinGainPerSec(int newPassiveIncome)
 
 Sprite* HUD::getBackgroundSprite()
 {
-    return sprite;
+    return hudBackground;
 }
 
 //scheduler calls this function to update using delta time

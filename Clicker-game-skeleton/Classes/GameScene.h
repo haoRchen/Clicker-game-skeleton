@@ -23,6 +23,7 @@ using namespace std;
 class GameScene : public Layer
 {
     private:
+        //pointer to HUD object
         HUD* _hud;
     public:
         GameScene(void){;}
@@ -32,10 +33,10 @@ class GameScene : public Layer
         virtual bool init() override;//overriding helloworld init
         // implement the "static create()" method manually
         CREATE_FUNC(GameScene);
-        //single touch events, logging coordinates
+        //single touch events, logging coordinates and incrementing coin value after each click
         bool onTouchBegan(Touch *touch, Event * event) override;
-        void touchEvent(Ref *sender, ui::Widget::TouchEventType type);
-        void update(float dt) override;//calls the events 
+        //receive event number from _hud, then call the corresponding update method to the database
+        void update(float dt) override;
 
 };
 

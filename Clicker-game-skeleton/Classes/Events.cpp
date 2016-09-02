@@ -22,6 +22,7 @@ bool Events::init()
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
     
+    //creating the background sprite for the popup
     popupBackground = Sprite::create("eventpopup.png");
     popupBackground->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
     this->addChild(popupBackground, 0);
@@ -41,7 +42,6 @@ bool Events::init()
     
     //event message label
     eventMessage2 = Label::createWithTTF(eventMessageGenerator()->c_str(), "fonts/arial.ttf", 50);
-    CCLOG("%s", eventMessageGenerator()->c_str());
     eventMessage2->setScale(0.5f);
     eventMessage2->setColor(Color3B(0,0,0));
     eventMessage2->setAnchorPoint(Point(0.0f, 0.5f));
@@ -62,13 +62,13 @@ string *Events::eventName()
     eventNumber = RandomHelper::random_int(1, 3);
     switch (eventNumber) {
         case 1:
-            eventType = "You have found some coins!";
+            eventType = "Oh look, free coins!";
             break;
         case 2:
-            eventType = "You have lost some coins";
+            eventType = "Oh no! Your pants had holes in them...";
             break;
         case 3:
-            eventType = "You've gained a passive income method!";
+            eventType = "You've become wiser and more efficient.";
             break;
         default:
             CCLOG("invalid");

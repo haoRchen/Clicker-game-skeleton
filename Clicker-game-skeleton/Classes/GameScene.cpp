@@ -78,9 +78,10 @@ bool GameScene::onTouchBegan(Touch *touch, Event *event)
     Sprite* backgroundsprite = _hud->getBackgroundSprite();
     Size backgroundSize = backgroundsprite->getContentSize();
     
+    //logging the coordinates
     CCLOG("ontouchbegan x = %d, y = %d", _x, _y);
     CCLOG("%f, %f", backgroundSize.width, backgroundSize.height);
-    //checks if the click is within the coordinates allowed
+    //checks if the click is within the coordinates allowed(gameplay area)
     if(_x <= s.width && _y > backgroundSize.height && _y <  1000)
     {
         CCLOG("you are clicking in the right place! ");

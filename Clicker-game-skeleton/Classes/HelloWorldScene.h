@@ -8,7 +8,6 @@
 USING_NS_CC;//ui features
 
 USING_NS_CC_EXT;//ui features
-//using namespace ui;
 using namespace cocos2d;
 
 class HelloWorld : public Layer, public ui::EditBoxDelegate

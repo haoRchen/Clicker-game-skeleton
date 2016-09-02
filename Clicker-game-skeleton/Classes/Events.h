@@ -34,9 +34,12 @@ private:
     Sprite *popupBackground;
     
 public:
+    //returns the eventNumber
     int getEventNum();
+    //returns the event message
     string* eventMessageGenerator();
     string* eventName();
+    //callback to destroy the event class 
     void eventCloseCallback(cocos2d::Ref* pSender, ui::Widget::TouchEventType type);
     
     virtual bool init();
