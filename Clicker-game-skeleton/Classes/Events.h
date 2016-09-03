@@ -29,11 +29,12 @@ private:
     //label to display title
     Label *eventMessage;
     Label *eventMessage2;
-    
     //popup background sprite
     Sprite *popupBackground;
     
 public:
+    Events(void){;}
+    ~Events(void){;}
     //returns the eventNumber
     int getEventNum();
     //returns the event message

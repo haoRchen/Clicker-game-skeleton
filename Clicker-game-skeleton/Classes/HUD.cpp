@@ -71,9 +71,9 @@ bool HUD::init()
     addChild(CoinsPerSecond);
     
     //manually resetting the database
-    //updateCoins(4);
+    //updateCoins(-17000);
     //updateCoinsPClick(-5);
-    //updateCoinsPSec(3);
+    //updateCoinsPSec(-100);
     
     
     //calls scheduler every 1 second for passive income

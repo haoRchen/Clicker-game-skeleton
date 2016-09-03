@@ -64,9 +64,10 @@ bool GameScene::init()
     auto listener = EventListenerTouchOneByOne::create();
     listener->setSwallowTouches(true);
     listener->onTouchBegan = CC_CALLBACK_2(GameScene::onTouchBegan, this);
-    _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+    Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, this);
     
     this->schedule(schedule_selector(GameScene::update), 5.0);
+    
     
     return true;
 }
@@ -97,7 +98,6 @@ void GameScene::update(float dt)
     CCLOG("event called ");
     
     _eventDispatcher->pauseEventListenersForTarget(this, true);
-    
     auto dl = Events::create();
     addChild(dl);
     auto eventNum = dl->getEventNum();
@@ -118,6 +118,8 @@ void GameScene::update(float dt)
             CCLOG("Invalid event num");
             break;
     }
+     _eventDispatcher->resumeEventListenersForTarget(this, true);
+    
 }
 
 
