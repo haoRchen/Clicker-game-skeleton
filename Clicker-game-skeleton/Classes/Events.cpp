@@ -21,6 +21,12 @@ bool Events::init()
     //storing visible screensize
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
+    auto size = 1;
+    if(visibleSize.width == 2048 || visibleSize.height == 2048)
+    {
+        size = visibleSize.height / 1136;
+        CCLOG("%d is the size of content scale", size);
+    }//need fixing
     
     //creating the background sprite for the popup
     popupBackground = Sprite::create("eventpopup.png");
@@ -28,14 +34,12 @@ bool Events::init()
     this->addChild(popupBackground, 0);
     
     //event message label
-    //eventMessage = Label::createWithTTF(eventName()->c_str(), "fonts/arial.ttf", 50, Size::ZERO, TextHAlignment::CENTER);
-    eventMessage = Label::createWithTTF(eventName()->c_str(), "fonts/arial.ttf", 50);
+    eventMessage = Label::createWithTTF(eventName()->c_str(), "fonts/arial.ttf", 50*size);
     eventMessage->setScale(0.5f);
-    eventMessage->setHorizontalAlignment(TextHAlignment::CENTER);
-    eventMessage->setVerticalAlignment(TextVAlignment::CENTER);
     eventMessage->setColor(Color3B(0,0,0));
-    eventMessage->setAnchorPoint(Point(0.0f, 0.5f));
-    eventMessage->setPosition(Vec2(visibleSize.width/6, visibleSize.height/2 - 10));
+    eventMessage->setAnchorPoint(Point(0.5f, 0.5f));
+    eventMessage->setAlignment(TextHAlignment::CENTER, TextVAlignment::CENTER);
+    eventMessage->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2 - 10));
     addChild(eventMessage, 1);
     //need to make text horizontally align with screen, uncomment afterwards.
     
@@ -44,8 +48,9 @@ bool Events::init()
     eventMessage2 = Label::createWithTTF(eventMessageGenerator()->c_str(), "fonts/arial.ttf", 50);
     eventMessage2->setScale(0.5f);
     eventMessage2->setColor(Color3B(0,0,0));
-    eventMessage2->setAnchorPoint(Point(0.0f, 0.5f));
-    eventMessage2->setPosition(Vec2(visibleSize.width/3 + 30, visibleSize.height/2 - 50));
+    eventMessage2->setAnchorPoint(Point(0.5f, 0.5f));
+    eventMessage->setAlignment(TextHAlignment::CENTER, TextVAlignment::CENTER);
+    eventMessage2->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2 - 50));
     addChild(eventMessage2, 1);
     
     //creating button, 1st parameter is the normal state, and second is the pressed state
@@ -110,6 +115,7 @@ void Events::eventCloseCallback(cocos2d::Ref* pSender, ui::Widget::TouchEventTyp
         {
             log("touch ended");
             CCLOG("exiting events");
+            //destroy events object
             this->removeFromParentAndCleanup(true);
             break;
         }

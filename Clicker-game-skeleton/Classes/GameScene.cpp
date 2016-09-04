@@ -96,7 +96,7 @@ bool GameScene::onTouchBegan(Touch *touch, Event *event)
 void GameScene::update(float dt)
 {
     CCLOG("event called ");
-    
+    //pause all event listeners
     _eventDispatcher->pauseEventListenersForTarget(this, true);
     auto dl = Events::create();
     addChild(dl);
@@ -118,6 +118,7 @@ void GameScene::update(float dt)
             CCLOG("Invalid event num");
             break;
     }
+    //resume all event listeners
      _eventDispatcher->resumeEventListenersForTarget(this, true);
     
 }
