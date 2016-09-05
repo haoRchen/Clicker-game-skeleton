@@ -31,6 +31,7 @@ private:
     Label *eventMessage2;
     //popup background sprite
     Sprite *popupBackground;
+    float size;//storing content scale
     
 public:
     Events(void){;}

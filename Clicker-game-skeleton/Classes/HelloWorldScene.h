@@ -12,6 +12,8 @@ using namespace cocos2d;
 
 class HelloWorld : public Layer, public ui::EditBoxDelegate
 {
+private:
+    float size;//store content scale
 public:
     static cocos2d::Scene* createScene();
 

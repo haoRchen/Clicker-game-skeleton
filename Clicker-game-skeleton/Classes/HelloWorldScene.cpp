@@ -41,6 +41,12 @@ bool HelloWorld::init()
     //storing visible screensize
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
+    size = 1;
+    if(visibleSize.width == 2048 || visibleSize.height == 2048)
+    {
+        size = visibleSize.height / 1136;
+        CCLOG("%f is the size of content scale", size);
+    }
     //logs visible and original size. Testing purpose
     CCLOG("visibleSize is (%.2f, %.2f)", visibleSize.width, visibleSize.height);
     CCLOG("origin is (%.2f, %.2f)", origin.x, origin.y);
@@ -65,8 +71,7 @@ bool HelloWorld::init()
 
     //////////////////
     // create and initialize a label/title
-    float scaleFactor = Director::getInstance()->getContentScaleFactor();
-    auto label = Label::createWithTTF("Sign In", "fonts/Marker Felt.ttf", 45*scaleFactor);
+    auto label = Label::createWithTTF("Sign In", "fonts/Marker Felt.ttf", 45*size);
     
     // position the label on the center of the screen
     label->setPosition(Vec2(origin.x + visibleSize.width/2,
@@ -77,11 +82,6 @@ bool HelloWorld::init()
     
     // add background image
     auto sprite = Sprite::create("greenbackground.png");
-    //auto oWidth = sprite->getContentSize().width;
-    //auto oHeight = sprite->getContentSize().height;
-    //scaling background according to resolution
-    //sprite->setscale(visibleSize.width/oWidth, visibleSize.height/oHeight);
-    //sprite->setContentSize(visibleSize);//stretches/shrinks the image to the size of visible screen
     // position the sprite on the center of the screen
     sprite->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
     CCLOG("********%f, %f", sprite->getContentSize().width, sprite->getContentSize().height);
@@ -99,7 +99,7 @@ bool HelloWorld::init()
     //checking sprite position-testing purpose
     CCLOG("X and Y is: (%.2f, %.2f)",((visibleSize.width * 1.35)), (visibleSize.height));
     
-    userNameInput->setFontSize(20);
+    userNameInput->setFontSize(20*size);
     userNameInput->setFontColor(Color3B::BLACK);
     userNameInput->setPlaceHolder("Username");
     userNameInput->setPlaceholderFontSize(20);
@@ -115,7 +115,7 @@ bool HelloWorld::init()
     ui::EditBox *emailAddressInput = ui::EditBox::create( Size(visibleSize.width/3, visibleSize.height/30), ui::Scale9Sprite::create("white.png"));
     //set textbox position with openGL coordinates
     emailAddressInput->setPosition(Vec2((visibleSize.width/2), visibleSize.height/1.23 + origin.y));
-    emailAddressInput->setFontSize(20);
+    emailAddressInput->setFontSize(20*size);
     emailAddressInput->setFontColor(Color3B::BLACK);
     emailAddressInput->setPlaceHolder("Email address");
     emailAddressInput->setPlaceholderFontSize(20);
@@ -130,7 +130,7 @@ bool HelloWorld::init()
     ui::EditBox *emailPasswordInput = ui::EditBox::create( Size(visibleSize.width/3, visibleSize.height/30), ui::Scale9Sprite::create("white.png"));
     //set textbox position with openGL coordinates
     emailPasswordInput->setPosition(Vec2((visibleSize.width/2), visibleSize.height/1.33 + origin.y));
-    emailPasswordInput->setFontSize(20);
+    emailPasswordInput->setFontSize(20*size);
     emailPasswordInput->setFontColor(Color3B::BLACK);
     emailPasswordInput->setPlaceHolder("Email Password");
     emailPasswordInput->setPlaceholderFontSize(20);
@@ -149,7 +149,7 @@ bool HelloWorld::init()
     //270 x 215
     loginButton->setPosition(Vec2((visibleSize.width/2), visibleSize.height/1.50 + origin.y));
     loginButton->setTitleText("Login");
-    loginButton->setTitleFontSize(25);
+    loginButton->setTitleFontSize(25*size);
     this->addChild(loginButton);
     loginButton->addTouchEventListener(CC_CALLBACK_2(HelloWorld::touchEvent, this));
     

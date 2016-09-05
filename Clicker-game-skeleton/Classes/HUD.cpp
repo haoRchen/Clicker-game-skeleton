@@ -4,12 +4,18 @@ USING_NS_CC;
 
 bool HUD::init()
 {
+    size = 1;
     Size s = Director::getInstance()->getVisibleSize();
     //HUD background
     hudBackground = Sprite::create("greybackground1.jpeg");
     hudBackground->setPosition(Vec2(s.width/2, s.height - hudBackground->getContentSize().height/2));
     this->addChild(hudBackground, 0);
     
+    if(s.width == 2048 || s.height == 2048)
+    {
+        size = s.height / 1136;
+        CCLOG("%f is the size of content scale", size);
+    }
     //HUD sprites
     //coin sprite
     _coinS = Sprite::create("coin1.jpg");
@@ -18,7 +24,7 @@ bool HUD::init()
     
     //coins per click sprite
     _coinPerClickS = Sprite::create("mouse-click1.png");
-    _coinPerClickS->setPosition(Vec2(s.width/4 + s.width/4, s.height - hudBackground->getContentSize().height/2));
+    _coinPerClickS->setPosition(Vec2((s.width/4)*2, s.height - hudBackground->getContentSize().height/2));
     this->addChild(_coinPerClickS);
     
     //passive income per second sprite
@@ -48,25 +54,25 @@ bool HUD::init()
     //HUD Labels
     
     //coin label
-    Coins = Label::createWithTTF(StringUtils::toString(_coinAmount), "fonts/arial.ttf", 60);
+    Coins = Label::createWithTTF(StringUtils::toString(_coinAmount), "fonts/arial.ttf", 60*size);
     //grab interger value from database, then convert to string to fit the argument
     Coins->setScale(0.5f);
-    Coins->setAnchorPoint(Point(0.0f, 0.5f));
+    Coins->setAnchorPoint(Point(0.5f, 0.5f));
     Coins->setPosition(Point(s.width/4 + _coinS->getContentSize().width, s.height - hudBackground->getContentSize().height/2));
 
     addChild(Coins);
     
     //coin per click label
-    CoinsPerClick = Label::createWithTTF(StringUtils::toString(_coinGainPerClick), "fonts/arial.ttf", 60);
+    CoinsPerClick = Label::createWithTTF(StringUtils::toString(_coinGainPerClick), "fonts/arial.ttf", 60*size);
     CoinsPerClick->setScale(0.5f);
-    CoinsPerClick->setAnchorPoint(Point(0.0f, 0.5f));
+    CoinsPerClick->setAnchorPoint(Point(0.5f, 0.5f));
     CoinsPerClick->setPosition(Point((s.width/4)*2 + CoinsPerClick->getContentSize().width, s.height - hudBackground->getContentSize().height/2));
     addChild(CoinsPerClick);
     
     //coin per second label
-    CoinsPerSecond = Label::createWithTTF(StringUtils::toString(_coinGainPerSec), "fonts/arial.ttf", 60);
+    CoinsPerSecond = Label::createWithTTF(StringUtils::toString(_coinGainPerSec), "fonts/arial.ttf", 60*size);
     CoinsPerSecond->setScale(0.5f);
-    CoinsPerSecond->setAnchorPoint(Point(0.0f, 0.5f));
+    CoinsPerSecond->setAnchorPoint(Point(0.5f, 0.5f));
     CoinsPerSecond->setPosition(Point((s.width/4)*3 + CoinsPerSecond->getContentSize().width, s.height - hudBackground->getContentSize().height/2));
     addChild(CoinsPerSecond);
     

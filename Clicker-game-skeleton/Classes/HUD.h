@@ -23,6 +23,7 @@ private:
     Sprite* _coinPerSecondS;
     //local database pointer
     UserDefault *def;
+    float size;
 public:
     //updating values. Will add parameter to original amount in the database
     void updateCoins(int NewCoin);

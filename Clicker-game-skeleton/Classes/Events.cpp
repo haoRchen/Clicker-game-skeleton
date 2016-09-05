@@ -21,12 +21,12 @@ bool Events::init()
     //storing visible screensize
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
-    auto size = 1;
+    size = 1;
     if(visibleSize.width == 2048 || visibleSize.height == 2048)
     {
         size = visibleSize.height / 1136;
-        CCLOG("%d is the size of content scale", size);
-    }//need fixing
+        CCLOG("%f is the size of content scale", size);
+    }
     
     //creating the background sprite for the popup
     popupBackground = Sprite::create("eventpopup.png");
@@ -45,7 +45,7 @@ bool Events::init()
     
     
     //event message label
-    eventMessage2 = Label::createWithTTF(eventMessageGenerator()->c_str(), "fonts/arial.ttf", 50);
+    eventMessage2 = Label::createWithTTF(eventMessageGenerator()->c_str(), "fonts/arial.ttf", 50*size);
     eventMessage2->setScale(0.5f);
     eventMessage2->setColor(Color3B(0,0,0));
     eventMessage2->setAnchorPoint(Point(0.5f, 0.5f));
